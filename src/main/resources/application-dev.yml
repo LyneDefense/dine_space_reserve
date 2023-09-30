@@ -1,0 +1,46 @@
+server:
+  port: 8999
+spring:
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://127.0.0.1:5432/dine_space_reserve
+    username: postgres
+    password: 123456
+  flyway:
+    enabled: true
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true # ????? true ????????????
+  global-config:
+    db-config:
+      id-type: ASSIGN_ID # ?? ID?????????????Oracle?PostgreSQL?Kingbase?DB2?H2 ?????????????? @KeySequence ??
+  type-aliases-package: com.heyuan.dine_space_reserve.model.pojo
+  encryptor:
+    password: 71pEA4BZ7D927aFE # ?????????? https://www.imaegoo.com/2020/aes-key-generator/ ????
+
+springdoc:
+  api-docs:
+    enabled: true
+    path: /v3/api-docs
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui
+
+swagger:
+  enable: true
+
+logging:
+  pattern:
+    file: "%d{yyyy-MM-dd HH:mm:ss.SSS} ${LOG_LEVEL_PATTERN:%5p} ${PID:- } --- [%15.15t] %-40.40logger{39} : %m%n"
+    console: "%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n"
+    level:
+      com:
+        heyuan:
+          dine_space_reserve:
+            mapper: debug
