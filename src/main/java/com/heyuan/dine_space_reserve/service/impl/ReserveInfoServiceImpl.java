@@ -93,7 +93,7 @@ public class ReserveInfoServiceImpl implements ReserveInfoService {
         .booker(reserveInfoDO.getBooker())
         .bookerPhoneNumber(reserveInfoDO.getBookerPhoneNumber())
         .reserveDate(reserveInfoDO.getReserveDate())
-        .timeSlots(ReserveInfoDto.toInt(reserveInfoDO.getTimeSlots()))
+        .timeSlots(ReserveInfoDto.toDouble(reserveInfoDO.getTimeSlots()))
         .tags(reserveInfoDO.getTags())
         .roomName(reserveInfoDO.getRoomName())
         .pricePerPerson(reserveInfoDO.getPricePerPerson())

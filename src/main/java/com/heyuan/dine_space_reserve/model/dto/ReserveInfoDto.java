@@ -6,7 +6,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.validation.constraints.NotNull;
-
 import lombok.*;
 
 @Getter
@@ -32,7 +31,7 @@ public class ReserveInfoDto {
 
   @NotNull(message = "预定时间段不能为空")
   @ApiModelProperty(value = "时间段")
-  private List<Integer> timeSlots;
+  private List<Double> timeSlots;
 
   @ApiModelProperty(value = "房间标签")
   private List<String> tags;
@@ -62,7 +61,7 @@ public class ReserveInfoDto {
         .booker(reserveInfoDO.getBooker())
         .bookerPhoneNumber(reserveInfoDO.getBookerPhoneNumber())
         .reserveDate(reserveInfoDO.getReserveDate())
-        .timeSlots(toInt(reserveInfoDO.getTimeSlots()))
+        .timeSlots(toDouble(reserveInfoDO.getTimeSlots()))
         .tags(reserveInfoDO.getTags())
         .roomName(reserveInfoDO.getRoomName())
         .pricePerPerson(reserveInfoDO.getPricePerPerson())
@@ -77,11 +76,11 @@ public class ReserveInfoDto {
     return reserveInfoList.stream().map(ReserveInfoDto::of).collect(Collectors.toList());
   }
 
-  public static List<Integer> toInt(List<String> timeSlots) {
-    return timeSlots.stream().map(Integer::parseInt).collect(Collectors.toList());
+  public static List<Double> toDouble(List<String> timeSlots) {
+    return timeSlots.stream().map(Double::parseDouble).collect(Collectors.toList());
   }
 
-  public static List<String> toString(List<Integer> timeSlots) {
+  public static List<String> toString(List<Double> timeSlots) {
     return timeSlots.stream().map(String::valueOf).collect(Collectors.toList());
   }
 }
